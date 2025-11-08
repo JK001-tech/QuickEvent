@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Events | QuickEvent</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans">
+
+<!-- Navbar -->
+<nav class="bg-indigo-600 text-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+        <h1 class="text-2xl font-bold">QuickEvent</h1>
+        <div class="space-x-4">
+            <a th:href="@{/dashboard}" class="hover:bg-indigo-700 px-3 py-2 rounded">Dashboard</a>
+            <a th:href="@{/events/create}" class="hover:bg-indigo-700 px-3 py-2 rounded">Create Event</a>
+            <a th:href="@{/logout}" class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<section class="max-w-6xl mx-auto mt-10 p-6 bg-white rounded-lg shadow">
+    <h2 class="text-2xl font-semibold mb-6 text-indigo-700">Your Events</h2>
+
+    <table class="min-w-full border border-gray-200">
+        <thead class="bg-indigo-50">
+        <tr>
+            <th class="py-2 px-4 text-left">Title</th>
+            <th class="py-2 px-4 text-left">Date</th>
+            <th class="py-2 px-4 text-left">Location</th>
+            <th class="py-2 px-4 text-center">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="event : ${events}" class="border-b hover:bg-gray-50">
+            <td class="py-2 px-4" th:text="${event.title}">Sample Title</td>
+            <td class="py-2 px-4" th:text="${event.date}">2025-11-08</td>
+            <td class="py-2 px-4" th:text="${event.location}">Chennai</td>
+            <td class="py-2 px-4 text-center space-x-2">
+                <a th:href="@{'/events/edit/' + ${event.id}}" class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded">Edit</a>
+                <a th:href="@{'/events/delete/' + ${event.id}}" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-6">
+        <a th:href="@{/events/create}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">+ Create New Event</a>
+    </div>
+</section>
+
+</body>
+</html>

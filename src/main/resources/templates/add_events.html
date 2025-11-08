@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Event - QuickEvent</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h2>Add New Event</h2>
+
+<form th:action="@{/add-event}" method="post" th:object="${event}">
+    <label>Title:</label>
+    <input type="text" th:field="*{title}" required><br>
+
+    <label>Description:</label>
+    <textarea th:field="*{description}" required></textarea><br>
+
+    <button type="submit">Add Event</button>
+</form>
+
+<br>
+<a href="/events">⬅ Back to Events</a>
+</body>
+</html>
